@@ -1,8 +1,10 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const cors = require('cors')
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const database = {
 	users: [
@@ -51,7 +53,6 @@ app.post('/register', (req,res)=>{
 		id:"125",
 		name: name,
 		email: email,
-		password: password,
 		entries: 0,
 		joined: new Date()
 	})
@@ -84,12 +85,13 @@ app.put('/image', (req,res)=>{
 			user.entries++;
 			return res.json(user.entries);
 		}
-	if(!found){
-		res.status(400).json('user not found');
-	}
-
 	})
+
+	if(!found){
+		res.status(400).json('not found');
+	}
 })
+
 app.listen(3000, ()=>{
 	console.log("app is running on port 3000")
 })
