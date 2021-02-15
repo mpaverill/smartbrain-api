@@ -25,13 +25,6 @@ const database = {
 			joined: new Date()
 		}		
 	],
-	login: [
-		{
-			id: '987',
-			hash: '',
-			email: 'john@gmail.com'
-		}
-	]
 }
 
 app.get('/', (req,res)=> {
